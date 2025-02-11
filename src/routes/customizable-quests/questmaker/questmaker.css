@@ -1,0 +1,42 @@
+body {
+	background-color: #121212;
+	color: #e0e0e0;
+}
+
+.container {
+	background-color: #1e1e1e;
+	border-radius: 10px;
+	padding: 2rem;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+.form-label {
+	color: #bbb;
+}
+.form-control,
+.form-select {
+	background-color: #333;
+	border: 1px solid #555;
+	color: #fff;
+	margin-bottom:18px;
+}
+.form-control::placeholder {
+	color: #bbb;
+}
+.btn-primary {
+	background-color: #6200ea;
+	border-color: #6200ea;
+}
+.btn-primary:hover {
+	background-color: #3700b3;
+	border-color: #3700b3;
+}
+.form-section {
+	border: 1px solid #444;
+	padding: 1rem;
+	border-radius: 8px;
+	margin-bottom: 1.5rem;
+}
+
+.modal-dialog {
+	color: black;
+}

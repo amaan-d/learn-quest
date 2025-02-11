@@ -1,0 +1,30 @@
+# Dependencies
+/node_modules
+
+# SvelteKit output
+/.svelte-kit
+/build
+
+# Testing
+/coverage
+
+# Environment variables
+.env
+.env.*
+!/.env.example
+
+# System files
+.DS_Store
+
+# Optional: Logs
+*.log
+
+# Optional: Temporary files
+tmp
+temp
+
+# Optional: IDE specific files
+.idea
+.vscode
+
+node_modules

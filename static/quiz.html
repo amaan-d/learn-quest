@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Take Quiz</title>
+
+	<!-- Use Firebase v9+ Modular SDK imports -->
+	<script type="module">
+		import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+		import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+
+		const firebaseConfig = {
+			apiKey: "AIzaSyAznAZx-vJNIzBEZs6Ha2BNBpbbr1GlZH0",
+			authDomain: "learnquest---quizmaker.firebaseapp.com",
+			projectId: "learnquest---quizmaker",
+			storageBucket: "learnquest---quizmaker.firebasestorage.app",
+			messagingSenderId: "309131964781",
+			appId: "1:309131964781:web:153bc4f6dbbea5d53a6a64",
+			measurementId: "G-GWEYG62Y3B"
+		};
+
+		const app = initializeApp(firebaseConfig);
+		const db = getFirestore(app);
+
+		const urlParams = new URLSearchParams(window.location.search);
+		const quizId = urlParams.get("id");
+
+		if (!quizId) {
+			location.replace('/message/quiznotfound');
+		} else {
+			const quizRef = doc(db, "quizzes", quizId);
+			getDoc(quizRef).then((docSnap) => {
+				if (docSnap.exists()) {
+					let quiz = docSnap.data();
+					document.getElementById("quizTitle").innerText = quiz.title;
+					let container = document.getElementById("quizContainer");
+					quiz.questions.forEach((q, index) => {
+						let qDiv = document.createElement("div");
+						qDiv.classList.add("question");
+
+						let imageHtml = q.image ? `<img src="${q.image}" style="max-width: 100%; height: auto; margin-bottom: 10px;" />` : "";
+
+						qDiv.innerHTML = `
+							${imageHtml}
+							<p><strong>${index + 1}. ${q.text}</strong></p>
+							<label><input type="radio" name="q${index}" value="A"> A) ${q.answers.A}</label><br>
+							<label><input type="radio" name="q${index}" value="B"> B) ${q.answers.B}</label><br>
+							${q.answers.C ? `<label><input type="radio" name="q${index}" value="C"> C) ${q.answers.C}</label><br>` : ""}
+							${q.answers.D ? `<label><input type="radio" name="q${index}" value="D"> D) ${q.answers.D}</label><br>` : ""}
+						`;
+
+						container.appendChild(qDiv);
+					});
+
+					document.getElementById("submitQuiz").style.display = "block";
+					loadAnswers();
+				} else {
+					location.replace('/message/quiznotfound');
+				}
+			}).catch((error) => {
+				console.error("Error fetching quiz:", error);
+				document.getElementById("quizTitle").innerText = "Error loading quiz.";
+			});
+		}
+
+		function saveAnswers() {
+			let answers = {};
+			document.querySelectorAll("input[type=radio]:checked").forEach(input => {
+				answers[input.name] = input.value;
+			});
+			localStorage.setItem(`quiz_${quizId}`, JSON.stringify(answers));
+		}
+
+		function loadAnswers() {
+			let savedAnswers = localStorage.getItem(`quiz_${quizId}`);
+			if (savedAnswers) {
+				savedAnswers = JSON.parse(savedAnswers);
+				for (let key in savedAnswers) {
+					let input = document.querySelector(`input[name="${key}"][value="${savedAnswers[key]}"]`);
+					if (input) input.checked = true;
+				}
+			}
+		}
+
+		document.addEventListener("change", saveAnswers);
+	</script>
+	<style>
+		body { background-color: #121212; color: #e0e0e0; text-align: center; }
+		.container { max-width: 600px; margin: auto; padding: 20px; }
+		.question { margin-bottom: 20px; padding: 10px; border-radius: 8px; background: #1e1e1e; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2 id="quizTitle">Loading...</h2>
+		<div id="quizContainer"></div>
+		<button id="submitQuiz" style="display:none;">Submit Quiz</button>
+	</div>
+</body>
+</html>
