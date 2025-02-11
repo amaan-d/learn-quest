@@ -1,12 +1,3 @@
-<p align="center">
-  <img src="static/sveltekit-electron.svg" />
-</p>
-
-# Sveltekit + Electron
-
-Minimal [Sveltekit](https://github.com/sveltejs/kit#readme) + [Electron](https://www.electronjs.org/) starter template.
-
-<br />
 
 ## Getting Started
 
@@ -14,7 +5,6 @@ Unfortunately you must use `npm` as there are issues that arise when using `pnpm
 
 |         |                                             |
 | ------- | ------------------------------------------- |
-| Clone   | · `npx degit fractalhq/sveltekit-electron ` |
 | Install | · `npm install`                             |
 | Develop | · `npm run dev`                             |
 | Build   | · `npm run build`                           |
