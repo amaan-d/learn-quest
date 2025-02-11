@@ -108,9 +108,9 @@
                         win: function(){
                             this.stopTimer();
                             setTimeout(() => {
+                                this.updateBestTime();
                                 this.showModal();
                                 this.$game.style.display = 'none';
-                                this.updateBestTime();
                                 this.updateLastCompleted();
                             }, 1000);
                         },
