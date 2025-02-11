@@ -3,7 +3,6 @@
 
 Unfortunately you must use `npm` as there are issues that arise when using `pnpm` or `yarn`
 
-|         |                                             |
 | ------- | ------------------------------------------- |
 | Install | · `npm install`                             |
 | Develop | · `npm run dev`                             |
