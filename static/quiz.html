@@ -26,42 +26,46 @@
 		const urlParams = new URLSearchParams(window.location.search);
 		const quizId = urlParams.get("id");
 
-		if (!quizId) {
-			location.replace('/message/quiznotfound');
-		} else {
+		async function loadQuiz() {
+			if (!quizId) {
+				location.replace('/message/quiznotfound');
+				return;
+			}
+
 			const quizRef = doc(db, "quizzes", quizId);
-			getDoc(quizRef).then((docSnap) => {
-				if (docSnap.exists()) {
-					let quiz = docSnap.data();
-					document.getElementById("quizTitle").innerText = quiz.title;
-					let container = document.getElementById("quizContainer");
-					quiz.questions.forEach((q, index) => {
-						let qDiv = document.createElement("div");
-						qDiv.classList.add("question");
+			const docSnap = await getDoc(quizRef);
 
-						let imageHtml = q.image ? `<img src="${q.image}" style="max-width: 100%; height: auto; margin-bottom: 10px;" />` : "";
+			if (!docSnap.exists()) {
+				location.replace('/message/quiznotfound');
+				return;
+			}
 
-						qDiv.innerHTML = `
-							${imageHtml}
-							<p><strong>${index + 1}. ${q.text}</strong></p>
-							<label><input type="radio" name="q${index}" value="A"> A) ${q.answers.A}</label><br>
-							<label><input type="radio" name="q${index}" value="B"> B) ${q.answers.B}</label><br>
-							${q.answers.C ? `<label><input type="radio" name="q${index}" value="C"> C) ${q.answers.C}</label><br>` : ""}
-							${q.answers.D ? `<label><input type="radio" name="q${index}" value="D"> D) ${q.answers.D}</label><br>` : ""}
-						`;
+			let quiz = docSnap.data();
+			document.getElementById("quizTitle").innerText = quiz.title;
+			let container = document.getElementById("quizContainer");
 
-						container.appendChild(qDiv);
-					});
+			quiz.questions.forEach((q, index) => {
+				let qDiv = document.createElement("div");
+				qDiv.classList.add("question");
 
-					document.getElementById("submitQuiz").style.display = "block";
-					loadAnswers();
-				} else {
-					location.replace('/message/quiznotfound');
-				}
-			}).catch((error) => {
-				console.error("Error fetching quiz:", error);
-				document.getElementById("quizTitle").innerText = "Error loading quiz.";
+				let imageHtml = q.image ? `<img src="${q.image}" style="max-width: 100%; height: auto; margin-bottom: 10px;" />` : "";
+
+				qDiv.innerHTML = `
+					${imageHtml}
+					<p><strong>${index + 1}. ${q.text}</strong></p>
+					<label><input type="radio" name="q${index}" value="A"> A) ${q.answers.A}</label><br>
+					<label><input type="radio" name="q${index}" value="B"> B) ${q.answers.B}</label><br>
+					${q.answers.C ? `<label><input type="radio" name="q${index}" value="C"> C) ${q.answers.C}</label><br>` : ""}
+					${q.answers.D ? `<label><input type="radio" name="q${index}" value="D"> D) ${q.answers.D}</label><br>` : ""}
+					<p class="feedback" id="feedback${index}" style="display:none; margin-top:5px;"></p>
+				`;
+
+				container.appendChild(qDiv);
 			});
+
+			document.getElementById("submitQuiz").style.display = "block";
+			document.getElementById("submitQuiz").addEventListener("click", () => checkAnswers(quiz.questions));
+			loadAnswers();
 		}
 
 		function saveAnswers() {
@@ -83,12 +87,42 @@
 			}
 		}
 
+		function checkAnswers(questions) {
+			let savedAnswers = {};
+			document.querySelectorAll("input[type=radio]:checked").forEach(input => {
+				savedAnswers[input.name] = input.value;
+			});
+
+			let correctCount = 0;
+			questions.forEach((q, index) => {
+				let userAnswer = savedAnswers[`q${index}`];
+				let correctAnswer = q.correct;  // Use the correct key from local storage data
+				let feedbackElement = document.getElementById(`feedback${index}`);
+
+				if (userAnswer) {
+					if (userAnswer === correctAnswer) {
+						feedbackElement.innerHTML = `<span style="color: green;">✔ Correct</span>`;
+						correctCount++;
+					} else {
+						feedbackElement.innerHTML = `<span style="color: red;">✘ Incorrect</span> (Correct answer: ${correctAnswer})`;
+					}
+					feedbackElement.style.display = "block";
+				}
+			});
+
+			alert(`Quiz completed! You got ${correctCount} out of ${questions.length} correct.`);
+		}
+
 		document.addEventListener("change", saveAnswers);
+		loadQuiz();
 	</script>
+
 	<style>
 		body { background-color: #121212; color: #e0e0e0; text-align: center; }
 		.container { max-width: 600px; margin: auto; padding: 20px; }
 		.question { margin-bottom: 20px; padding: 10px; border-radius: 8px; background: #1e1e1e; }
+		button { background-color: #6200ea; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
+		button:hover { background-color: #3700b3; }
 	</style>
 </head>
 <body>
