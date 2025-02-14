@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,13 +119,44 @@
 	</script>
 
 	<style>
-		body { background-color: #121212; color: #e0e0e0; text-align: center; }
-		.container { max-width: 600px; margin: auto; padding: 20px; }
-		.question { margin-bottom: 20px; padding: 10px; border-radius: 8px; background: #1e1e1e; }
-		button { background-color: #6200ea; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
-		button:hover { background-color: #3700b3; }
+		@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+		body {
+			background-color: #121212;
+			color: #e0e0e0;
+			text-align: center;
+			font-family: 'Varela Round';
+		}
+
+		.container {
+			max-width: 600px;
+			margin: auto;
+			padding: 20px;
+		}
+
+		.question {
+			margin-bottom: 20px;
+			padding: 10px;
+			border-radius: 8px;
+			background: #1e1e1e;
+		}
+
+		button {
+			background-color: #6200ea;
+			color: white;
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-top: 20px;
+		}
+
+		button:hover {
+			background-color: #3700b3;
+		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
 		<h2 id="quizTitle">Loading...</h2>
@@ -132,4 +164,5 @@
 		<button id="submitQuiz" style="display:none;">Submit Quiz</button>
 	</div>
 </body>
+
 </html>

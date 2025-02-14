@@ -13,11 +13,15 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 	/>
 </svelte:head>
+<button on:click={() => location.replace('/KG')} class="btn btn-primary back">
+	<i class="fas fa-arrow-left" />
+</button>
+<br />
 <ol>
 	<h1>
 		Identifying/Counting
 		<br />
-		 Numbers (up to 5)
+		Numbers (up to 5)
 	</h1>
 	<br />
 	<p>This is one pizza.</p>
@@ -49,6 +53,7 @@
 		Continue&nbsp;&nbsp;
 		<i class="fas fa-arrow-right" />
 	</button>
+	<!--MAKE LINK & STYLE-->
 	<!--MAKE LINK & STYLE-->
 	<!--MAKE LINK & STYLE-->
 	<style>
@@ -113,6 +118,17 @@
 		p,
 		blockquote {
 			color: white;
+		}
+
+		.back {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			padding: 16px;
 		}
 	</style>
 </ol>
