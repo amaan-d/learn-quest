@@ -8,7 +8,7 @@
             <div class="modal-overlay">
                 <div class="modal">
                     <h2 class="winner">You Rock!</h2>
-                    <p style="font-family: 'Varela Round'; text-align: center; font-size: 24px;">Indentifying/Counting (up to 5)</p>
+                    <p style="font-family: 'Varela Round'; text-align: center; font-size: 24px;">Identifying/Counting (up to 5)</p>
                     <p style="font-family: 'Varela Round'; text-align: center;" class="final-time">Name: <span id="yourName"></span></p>
                     <p style="font-family: 'Varela Round'; text-align: center;" class="final-time">Time: <span id="final-time"></span> seconds</p>
                     <p style="font-family: 'Varela Round'; text-align: center;" class="best-time">Best Time: <span id="best-time"></span> seconds</p>
@@ -109,36 +109,24 @@
                             this.stopTimer();
                             setTimeout(() => {
                                 this.updateBestTime();
-                                this.showModal();
                                 this.$game.style.display = 'none';
                                 this.updateLastCompleted();
+                                localStorage.setItem("Identifying_Counting_upto5_time", this.elapsedTime);
+                                location.replace("complete/Identifying_Counting_upto5.html")
                             }, 1000);
                         },
     
-                        showModal: function(){
-                            this.$finalTime.textContent = this.elapsedTime;
-                            localStorage.setItem("Indentifying_Counting_upto5_time", this.elapsedTime);
-                            const now = new Date();
-                            const formattedDate = now.toLocaleString();
-                            const bestTime = localStorage.getItem("Indentifying_Counting_upto5_bestTime") || "None";
-                            const lastCompleted = localStorage.getItem("Indentifying_Counting_upto5_lastCompleted") || formattedDate;
-                            this.$bestTime.textContent = bestTime;
-                            this.$lastCompleted.textContent = lastCompleted;
-                            this.$overlay.style.display = 'block';
-                            this.$modal.style.display = 'block';
-                        },
-    
                         updateBestTime: function() {
-                            const bestTime = localStorage.getItem("Indentifying_Counting_upto5_bestTime");
+                            const bestTime = localStorage.getItem("Identifying_Counting_upto5_bestTime");
                             if (!bestTime || this.elapsedTime < bestTime) {
-                                localStorage.setItem("Indentifying_Counting_upto5_bestTime", this.elapsedTime);
+                                localStorage.setItem("Identifying_Counting_upto5_bestTime", this.elapsedTime);
                             }
                         },
     
                         updateLastCompleted: function() {
                             const now = new Date();
                             const formattedDate = now.toLocaleString();
-                            localStorage.setItem("Indentifying_Counting_upto5_lastCompleted", formattedDate);
+                            localStorage.setItem("Identifying_Counting_upto5_lastCompleted", formattedDate);
                         },
     
                         hideModal: function(){

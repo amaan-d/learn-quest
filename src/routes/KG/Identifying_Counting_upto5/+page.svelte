@@ -15,7 +15,7 @@
 </svelte:head>
 <ol>
 	<h1>
-		Indentifying/Counting
+		Identifying/Counting
 		<br />
 		 Numbers (up to 5)
 	</h1>
@@ -43,7 +43,7 @@
 	<br />
 	<br />
 	<button
-		on:click={() => location.replace('../Indentifying_Counting_upto5.html')}
+		on:click={() => location.replace('../Identifying_Counting_upto5.html')}
 		class="btn btn-success"
 	>
 		Continue&nbsp;&nbsp;
