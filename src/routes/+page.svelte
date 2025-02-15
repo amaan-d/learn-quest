@@ -115,6 +115,20 @@
 					style="font-size:29px; vertical-align: middle; margin-right: 5px">history_edu</pre>
 				Social Studies<span class="quest">Quests</span>
 			</h3>
+			<a href="English_KG.html"><button class="btn btn-danger">KG</button></a>
+			<a href="Math_1st.html"><button class="btn btn-success">1st Grade</button></a>
+			<a href="Math_2nd.html">
+				<button style="border: 1px solid rgba(18,128,128,.3);" class="btn btn-warning">2nd Grade</button>
+			</a>
+			<a href="Math_3rd.html">
+				<button style="color: white;" class="btn btn-info">3rd Grade</button>
+			</a>
+			<a href="Math_4th.html">
+				<button style="background-color: #ff69b4; border: #ff69b4; color: white" class="btn">
+					4th Grade
+				</button>
+			</a>
+			<a href="Math_5th.html"><button class="btn btn-primary">5th Grade</button></a>
 		</div>
 
 		<div class="container science" id="services">
@@ -124,6 +138,20 @@
 					style="font-size:29px; vertical-align: middle; margin-right: 5px">science</pre>
 				Science<span class="quest">Quests</span>
 			</h3>
+			<a href="English_KG.html"><button class="btn btn-danger">KG</button></a>
+			<a href="Math_1st.html"><button class="btn btn-success">1st Grade</button></a>
+			<a href="Math_2nd.html">
+				<button style="border: 1px solid rgba(18,128,128,.3);" class="btn btn-warning">2nd Grade</button>
+			</a>
+			<a href="Math_3rd.html">
+				<button style="color: white;" class="btn btn-info">3rd Grade</button>
+			</a>
+			<a href="Math_4th.html">
+				<button style="background-color: #ff69b4; border: #ff69b4; color: white" class="btn">
+					4th Grade
+				</button>
+			</a>
+			<a href="Math_5th.html"><button class="btn btn-primary">5th Grade</button></a>
 		</div>
 		<div class="container other">
 			<h3>
@@ -221,7 +249,7 @@
 		}
 
 		.ss {
-			background-color: #ffc107;
+			background-color: #fbdf71;
 			border-radius: 20px;
 			overflow: hidden;
 		}

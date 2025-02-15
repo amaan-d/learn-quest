@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Select</title>
+    <style>
+        hr {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .level-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+            padding: 10px;
+        }
+        .level-button {
+            width: 60px;
+            height: 60px;
+            margin: 8px;
+            border-radius: 10px;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .locked {
+            background-color: #95a5a6; /* Gray color for locked */
+            cursor: not-allowed;
+        }
+        .level-info {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #555;
+        }
+        @media (max-width: 600px) {
+            .level-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .level-button {
+                width: 50px;
+                height: 50px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Level</h1>
+    <div class="level-container" id="levelContainer">
+        <!-- Level buttons will be dynamically added here -->
+    </div>
+
+    <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script>
+    <script>
+        
+    localStorage.setItem('lvl1_time', '35');
+    localStorage.setItem('lvl1_date', '2/10/2025');
+        // Generate buttons for levels 1 to 100
+        const levelContainer = document.getElementById('levelContainer');
+        
+        for (let i = 1; i <= 100; i++) {
+            const button = document.createElement('button');
+            button.classList.add('level-button');
+            button.innerText = i;
+            
+            const levelTime = localStorage.getItem(`lvl${i}_time`);
+            const levelDate = localStorage.getItem(`lvl${i}_date`);
+            
+            // Create a div to display the time and date under the level button
+            const levelInfo = document.createElement('div');
+            levelInfo.classList.add('level-info');
+            if (levelTime && levelDate) {
+                levelInfo.innerHTML = `Time: ${levelTime}<br>${moment(levelDate).fromNow()}`;
+                levelInfo.style.borderBottom = '1px solid gray';
+                levelInfo.style.marginTop = '0px';
+
+            } else {
+                levelInfo.innerHTML = '<br><br>';
+                levelInfo.style.borderBottom = '1px solid gray';
+                levelInfo.style.marginTop = '0px';
+                button.classList.add('locked');
+                button.disabled = true; // Disable the button
+                button.onclick = () => alert(`Level ${i} is locked!`);
+            }
+
+            // If the level is 10 or higher, lock the button
+            if (i >= 11) {
+                button.classList.add('locked');
+                button.disabled = true; // Disable the button
+                button.onclick = () => alert(`Level ${i} is locked!`);
+            } else {
+                button.onclick = () => alert(`Level ${i} selected!`);
+            }
+            
+            // Append the level button and the info div to the level container
+            const levelWrapper = document.createElement('div');
+            levelWrapper.appendChild(button);
+            levelWrapper.appendChild(levelInfo);
+            levelContainer.appendChild(levelWrapper);
+        }
+    </script>
+</body>
+</html>

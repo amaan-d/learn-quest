@@ -82,21 +82,7 @@
 	<h2>Create A LearnQuest Activity</h2>
 	<p>
 		Click below to create your very own, customizable LearnQuest activity for anyone to use!
-		Please note that you must need a Discord account before proceeding to create a LearnQuest
-		activity.
 	</p>
-	<p>However, there are some limitations...</p>
-	<ul>
-		<li>
-			You can attach a image to each question, only by making a image link. This can be any
-			accessible link such as a Google Drive link.
-		</li>
-		<li>You can only make a Quest with a maximum of 10 questions.</li>
-		<li>
-			On the form, once you add a question, you cannot remove it. You must be very aware of
-			this.
-		</li>
-	</ul>
 	<button type="button" class="btn">Make a quest in 3 modes:</button>
 	<div class="btn-group" role="group">
 		<button type="button" class="btn btn-primary">QuestRunner</button>
