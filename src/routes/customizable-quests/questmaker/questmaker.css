@@ -40,3 +40,40 @@ body {
 .modal-dialog {
 	color: black;
 }
+
+.nbutton-container {
+	display: flex;
+	background-color: rgba(245, 73, 144);
+	width: 100%;
+	align-items: center;
+	justify-content: space-around;
+	bottom: 0;
+	position: sticky;
+  }
+
+  .nbutton {
+	outline: 0 !important;
+	border: 0 !important;
+	width: 70px;
+	height: 50px;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	transition: all ease-in-out 0.3s;
+	cursor: pointer;
+  }
+
+  .nbutton svg {
+	margin-bottom: 5px;
+  }
+
+  .nbutton span {
+	font-size: 12px;
+  }
+
+  .nbutton:hover {
+	transform: translateY(-3px);
+  }
