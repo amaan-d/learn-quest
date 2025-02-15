@@ -19,7 +19,7 @@
       <div class="content">
         <span class="title">Something went wrong</span>
         <p class="message">
-          There was an error when submitting the form. Please try again. If the issue persists, contact us at <a href="mailto:developers@learnquest.com?subject=Error Encountered When Submitting Custom Quest Form&body=Dear LearnQuest Developers,%0A%0AI encountered an error while submitting the Custom Quest form. Despite multiple attempts on different devices and browsers, I was unable to successfully submit the form. I kept encountering the same issue. Here are the details of the error I experienced:%0A%0A[Please describe the error you encountered here.]%0A%0AThank you for looking into this issue. I appreciate your assistance.%0A%0ABest regards,%0A[Your Name]">developers@learnquest.com</a> or report the error in our Discord community at _________________.
+          There was an error when submitting the form. Please try again. If the issue persists, contact us at <a href="mailto:developers@learnquest.com?subject=Error Encountered When Submitting Custom Quest Form&body=Dear LearnQuest Developers,%0A%0AI encountered an error while submitting the Custom Quest form. Despite multiple attempts on different devices and browsers, I was unable to successfully submit the form. I kept encountering the same issue. Here are the details of the error I experienced:%0A%0A[Please describe the error you encountered here.]%0A%0AThank you for looking into this issue. I appreciate your assistance.%0A%0ABest regards,%0A[Your Name]">developers@learnquest.com</a>.
         </p>
       </div>
       <div class="actions">

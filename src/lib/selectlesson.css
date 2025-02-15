@@ -24,8 +24,12 @@ a {
 
 li {
   color: #4FAF44;
-  margin-left: 30px;
+  margin-left: 0px;
+  line-height: normal;
+  margin-bottom: 10px;
 }
+
+
 
 .arrow i {
   display: none;
@@ -69,4 +73,16 @@ p, blockquote {
 	height: 20px;
 	padding: 16px;
 }
+
+.check, .check1 {
+  color: green; /* Optional: change the color of the check mark */
+  margin-left: 10px; /* Adjust spacing if necessary */
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+}
+
+
 

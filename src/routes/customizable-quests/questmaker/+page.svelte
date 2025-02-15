@@ -342,7 +342,8 @@
 					let docRef = await db.collection('quizzes').add(quizData);
 					// Show the modal with the success message
 					const quizLink = `/quiz.html?id=${docRef.id}`;
-					document.getElementById('quizLink').textContent = quizLink;
+					document.getElementById('quizLink').innerHTML = `<a href="${quizLink}">Click to access the quiz</a>`;
+
 
 					// Show the success modal
 					const successModal = new bootstrap.Modal(
